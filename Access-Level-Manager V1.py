@@ -160,7 +160,13 @@ def login():
     choice = input("Enter choice (1-3): ")
 
     if choice == "1":
-        return Teacher("Mr. Ahmed Maqsood", 101, "Mathematics")
+        tid = int(input("Enter your Teacher ID: "))
+        teacher = find_teacher(tid)
+        if teacher:
+            return Teacher(teacher["full_name"], teacher["id"], teacher["department"])
+        else:
+            print(f"No teacher found with ID {tid}")
+            return None
     elif choice == "2":
         return Principal("Mr. Shahzad", 201)
     elif choice == "3":
