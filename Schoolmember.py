@@ -1,4 +1,4 @@
-from records import student_records
+from Helpers import get_all_students
 
 
 class SchoolMember:
@@ -12,7 +12,7 @@ class SchoolMember:
 
     def list_students(self):
         print("\nStudents:")
-        for student in student_records:
+        for student in get_all_students():
             print(f"{student['id']} - {student['full_name']} - {student['grade']}")
 
     def deny(self, action):

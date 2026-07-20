@@ -1,3 +1,4 @@
+from database import initialize_database
 from Auth import login
 from Teacher import Teacher
 from Principal import Principal
@@ -6,6 +7,7 @@ from Menus import teacher_menu, principal_menu, admin_menu
 
 
 if __name__ == '__main__':
+    initialize_database()
     user = login()
     if user:
         user.display()
