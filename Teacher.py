@@ -14,7 +14,7 @@ class Teacher(SchoolMember):
             print(f"{student['id']} - {student['full_name']} - {student['grade']} - "
                   f"Score {student['score']} - Presence {student['presence']}%")
     
-    def update_student_score(self, student_id, score):
+    def update_marks(self, student_id, score):
         student = studentsearch(student_id)
         if student:
             connection = create_connection()
@@ -26,7 +26,7 @@ class Teacher(SchoolMember):
         else:
             print(f"No student found with ID {student_id}.")
     
-    def update_student_presence(self, student_id, presence):
+    def update_attendance(self, student_id, presence):
         student = studentsearch(student_id)
         if student:
             connection = create_connection()

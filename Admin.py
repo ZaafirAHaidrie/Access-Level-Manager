@@ -53,6 +53,17 @@ class Admin(SchoolMember):
         else:
             print(f"Removal Failed")
 
+    def register_teacher(self, teacherid, full_name, department, pay):
+        connection = create_connection()
+        cursor = connection.cursor()
+        cursor.execute(
+            "INSERT INTO teachers (id, full_name, department, pay) VALUES (?, ?, ?, ?)",
+            (teacherid, full_name, department, pay)
+        )
+        connection.commit()
+        connection.close()
+        print(f"Registered teacher {full_name} with ID {teacherid}")
+
     def set_pay(self, teacherid, pay):
         teacher = teachersearch(teacherid)
         if teacher:
