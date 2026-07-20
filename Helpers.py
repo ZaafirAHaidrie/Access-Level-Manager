@@ -1,37 +1,33 @@
-from database import get_connection
+from database import create_connection
 
+def studentsearch(student_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM students WHERE id = ?", (student_id,))
+    student = cursor.fetchone()
+    connection.close()
+    return dict(student) if student else None
 
-def find_student(sid):
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM students WHERE id = ?", (sid,))
-    row = cur.fetchone()
-    conn.close()
-    return dict(row) if row else None
+def teachersearch(teacher_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM teachers WHERE id = ?", (teacher_id,))
+    teacher = cursor.fetchone()
+    connection.close()
+    return dict(teacher) if teacher else None
 
+def view_all_students():
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM students")
+    students = cursor.fetchall()
+    connection.close()
+    return [dict(student) for student in students]
 
-def find_teacher(tid):
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM teachers WHERE id = ?", (tid,))
-    row = cur.fetchone()
-    conn.close()
-    return dict(row) if row else None
-
-
-def get_all_students():
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM students")
-    rows = cur.fetchall()
-    conn.close()
-    return [dict(row) for row in rows]
-
-
-def get_all_teachers():
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM teachers")
-    rows = cur.fetchall()
-    conn.close()
-    return [dict(row) for row in rows]
+def view_all_teachers():
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM teachers")
+    teachers = cursor.fetchall()
+    connection.close()
+    return [dict(teacher) for teacher in teachers]

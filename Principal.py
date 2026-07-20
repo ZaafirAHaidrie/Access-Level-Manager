@@ -1,26 +1,25 @@
 from Schoolmember import SchoolMember
-from Helpers import get_all_students, get_all_teachers
-
+from Helpers import view_all_students, view_all_teachers
 
 class Principal(SchoolMember):
-    def __init__(self, full_name, id_number):
+    def __init__(self,full_name,id_number):
         super().__init__(full_name, id_number)
         self.position = "Principal"
-
-    def list_students(self):
+    
+    def studentlist(self):
         print("\nStudents (Principal view):")
-        for student in get_all_students():
+        for student in view_all_students():
             print(f"{student['id']} - {student['full_name']} - {student['grade']} - "
                   f"Score {student['score']} - Presence {student['presence']}%")
-
-    def list_teachers(self):
+    
+    def teacherlist(self):
         print("\nTeachers:")
-        for teacher in get_all_teachers():
+        for teacher in view_all_teachers():
             print(f"{teacher['id']} - {teacher['full_name']} - {teacher['department']}")
-
+    
     def summary(self):
-        students = get_all_students()
-        teachers = get_all_teachers()
+        students = view_all_students()
+        teachers = view_all_teachers()
         count_students = len(students)
         count_teachers = len(teachers)
         average_score = sum(student["score"] for student in students) / count_students
@@ -29,9 +28,8 @@ class Principal(SchoolMember):
         print(f"Students: {count_students}, Teachers: {count_teachers}")
         print(f"Average Score: {average_score:.1f}")
         print(f"Average Attendance: {average_attendance:.1f}%")
-
+    
     def register_student(self, *ignored):
         self.deny("register students")
-
     def set_pay(self, *ignored):
         self.deny("change staff pay")

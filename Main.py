@@ -3,7 +3,7 @@ from Auth import login
 from Teacher import Teacher
 from Principal import Principal
 from Admin import Admin
-from Menus import teacher_menu, principal_menu, admin_menu
+from Menu import teachermenu, principalmenu, adminmenu
 
 
 if __name__ == '__main__':
@@ -12,8 +12,8 @@ if __name__ == '__main__':
     if user:
         user.display()
         if isinstance(user, Teacher):
-            teacher_menu(user)
+            teachermenu(user)
         elif isinstance(user, Principal):
-            principal_menu(user)
+            principalmenu(user)
         elif isinstance(user, Admin):
-            admin_menu(user)
+            adminmenu(user)
