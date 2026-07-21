@@ -53,13 +53,13 @@ def initialize_database():
     cursor.execute("SELECT COUNT(*) FROM teachers")
     if cursor.fetchone()[0] == 0:
         enter_teachers = [
-            (206, "Mr. Ahmed Maqsood", "Mathematics", 50000),
-            (192, "Mr. Rao Habib", "English", 48000),
-            (453, "Mr. Usama Virk ", "Computer Science", 52000),
-            (723, "Mr. Bari", "History & Geography", 63000),
-            (105, "Mr. Hamiz Javed", "Physics", 49000),
-            (309, "Mr. Hashim Ali", "Chemistry", 51000),
-            (412, "Mr. Taimoor Shakoori", "Biology", 47000),
+            (2060, "Mr. Ahmed Maqsood", "Mathematics", 50000),
+            (1920, "Mr. Rao Habib", "English", 48000),
+            (4530, "Mr. Usama Virk ", "Computer Science", 52000),
+            (7230, "Mr. Bari", "History & Geography", 63000),
+            (1050, "Mr. Hamiz Javed", "Physics", 49000),
+            (3090, "Mr. Hashim Ali", "Chemistry", 51000),
+            (4120, "Mr. Taimoor Shakoori", "Biology", 47000),
         ]
         cursor.executemany(
             "INSERT INTO teachers (id, full_name, department, pay) VALUES (?, ?, ?, ?)",
