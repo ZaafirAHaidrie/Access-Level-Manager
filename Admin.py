@@ -1,6 +1,7 @@
 from Schoolmember import SchoolMember
 from Helpers import studentsearch, teachersearch, view_all_students, view_all_teachers
 from database import create_connection
+from security import hash_password
 
 STUDENT_FIELDS = {"full_name", "grade", "score", "presence"}
 class Admin(SchoolMember):
@@ -53,12 +54,14 @@ class Admin(SchoolMember):
         else:
             print(f"Removal Failed")
 
-    def register_teacher(self, teacherid, full_name, department, pay):
+    def register_teacher(self, teacherid, full_name, department, pay, password):
+        salt, password_hash = hash_password(password)
         connection = create_connection()
         cursor = connection.cursor()
         cursor.execute(
-            "INSERT INTO teachers (id, full_name, department, pay) VALUES (?, ?, ?, ?)",
-            (teacherid, full_name, department, pay)
+            "INSERT INTO teachers (id, full_name, department, pay, salt, password_hash) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (teacherid, full_name, department, pay, salt, password_hash)
         )
         connection.commit()
         connection.close()

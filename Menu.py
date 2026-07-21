@@ -71,7 +71,8 @@ def adminmenu(user):
             full_name = input("Full name: ")
             department = input("Department: ")
             pay = int(input("Pay: "))
-            user.register_teacher(teacherid, full_name, department, pay)
+            password = input("Set a password for this teacher: ")
+            user.register_teacher(teacherid, full_name, department, pay, password)
         elif choice == "7":
             teacherid = int(input("Teacher ID: "))
             pay = int(input("New pay: "))

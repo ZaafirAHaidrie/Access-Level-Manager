@@ -14,4 +14,3 @@ class SchoolMember:
             print(f"{student['id']} - {student['full_name']} - {student['grade']}")
     def deny(self,action):
         print(f"{self.position} is not permitted to {action}")
-              
